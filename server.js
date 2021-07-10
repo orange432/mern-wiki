@@ -14,14 +14,14 @@ const DATABASEURL = process.env.DATABASE_URL
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use(APIRouter);
+app.use('/api',APIRouter);
 
 app.use((req,res)=>{
     res.sendFile(path.join(__dirname,'public/index.html'));
 })
 
 mongoose.connect(DATABASEURL,{useNewUrlParser: true})
-    .then(
-        ()=>{ app.listen(PORT,()=>console.log(`App listening on port: ${PORT}`))},
-        err => { console.log(err) }
-    )
+.then(
+    ()=>{ app.listen(PORT,()=>console.log(`App listening on port: ${PORT}`))},
+    err => { console.log(err) }
+)

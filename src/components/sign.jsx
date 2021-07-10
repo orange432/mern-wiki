@@ -17,7 +17,12 @@ const Sign = () => {
         })
         .then(response=>response.json())
         .then(data=>{
-
+            setMessage(data.message);
+            setTimeout(()=>setMessage(''),4000);
+            if(data.success){
+                localStorage.setItem('session',data.session);
+                window.location.href="/dashboard";
+            }
         })
     }
     
@@ -37,6 +42,11 @@ const Sign = () => {
         .then(response=>response.json())
         .then(data=>{
             
+            setMessage(data.message);
+            setTimeout(()=>setMessage(''),4000);
+            if(data.success){
+                setRegisterTab(false);
+            }
         })
     }
 
@@ -56,10 +66,9 @@ const Sign = () => {
                     <input className="input" type="password" onChange={e=>setPassword(e.target.value)}/>
                     <label className="label">Verify Password</label>
                     <input className="input" type="password" onChange={e=>setVerifyPassword(e.target.value)} />
-                    <div className="has-text-centered" style={marginTop: 12}>
-                    <button className="button" type="button" onClick={signUp}>Register</button>
+                    <div className="sign__bottom">
+                        <button className="button" type="button" onClick={signUp}>Register</button>
                     </div>
-                    
                 </form>
             </div>
         )
@@ -77,7 +86,7 @@ const Sign = () => {
                 <input className="input" type="text" onChange={e=>setUsername(e.target.value)}/>
                 <label className="label">Password</label>
                 <input className="input" type="password" onChange={e=>setPassword(e.target.value)}/>
-                <div className="has-text-centered" style={marginTop: 12}>
+                <div className="sign__bottom">
                     <button className="button" type="button" onClick={login}>Login</button>
                 </div>
                 
