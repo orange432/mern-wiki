@@ -1,0 +1,15 @@
+.sign{
+    margin: 30px auto;
+    max-width: 480px;
+    &__tabs{
+        display: flex;
+    }
+    &__tab{
+        padding: 8px 16px;
+        background: "white";
+        width: 50%;
+        &.active{
+            background: lightblue;
+        }
+    }
+}
