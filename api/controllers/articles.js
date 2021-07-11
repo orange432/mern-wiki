@@ -24,13 +24,17 @@ const getArticle = (slug)=>{
 
 const addArticle = (slug,title,content, author) => {
     return new Promise((resolve,reject)=>{
-        Article.findOne({slug},(err,result)=>{
+        Article.findOne({slug},async (err,result)=>{
+            if(err){
+                resolve({success: false, message: "Something went wrong, please try again."});
+            }
             if(result){
                 // Article already exists
-                resolve({success: false, message: "Article already exists!"})
+                await Article.findOneAndUpdate({slug},{title,content,lastEditor: author, updatedAt: new Date()})
+                resolve({success: true, message: "Article successfully updated!"});
             }else{
-                Article.create({slug,title,content,author, lastEditor: author},(err,result2)=>{
-                    if(err){
+                Article.create({slug,title,content,author, lastEditor: author},(err2,result2)=>{
+                    if(err2){
                         resolve({success: false, message: "Database error! Please try again."});
                     }else{
                         resolve({success: true, message: "Article created successfully!"})
@@ -41,13 +45,5 @@ const addArticle = (slug,title,content, author) => {
     })
 }
 
-const editArticle = async (slug,title,content,author) => {
-    try{
-        await Article.findOneAndUpdate({slug},{title,content,lastEditor: author, updatedAt: new Date()})
-        return {success: false, message: "Article successfully updated!"};
-    }catch(err){
-        return {success: false, message: "Database error! Please try again."}
-    }
-}
 
-export { listArticles, getArticle, addArticle, editArticle }
+export { listArticles, getArticle, addArticle }

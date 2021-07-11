@@ -38,8 +38,8 @@ const Dashboard = () => {
         <div className="container">
             <h1 className="has-text-centered title">Dashboard</h1>
             <p className="has-text-centered subtitle">Hello {username}</p>
-            <Link to="/editor">Create Articles</Link>
-            <Link to="/articles">View Articles</Link>
+            <Link to="/editor" className="btn-prim">Create Articles</Link>
+            <Link to="/articles" className="btn-prim">View Articles</Link>
 
         </div>
     )

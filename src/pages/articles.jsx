@@ -5,7 +5,7 @@ const Articles = () => {
     const [loading,setLoading] = useState(true);
     const [articles,setArticles] = useState([]);
 
-    const authorize = () => {
+    const loadArticles = () => {
         fetch('/api/articles')
         .then(response=>response.json())
         .then(data=>{
@@ -13,6 +13,11 @@ const Articles = () => {
             setArticles(data)
         })
     }
+
+
+    useEffect(()=>{
+        loadArticles()
+    },[])
 
     if(loading){
         return (

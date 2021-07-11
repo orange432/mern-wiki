@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar from './components/navbar';
 import Index from './pages/index';
 import Dashboard from './pages/dashboard';
+import Article from './pages/article';
 import Articles from './pages/articles';
 import Edit from './pages/edit';
 
@@ -15,6 +16,7 @@ const App = () => {
           <Route exact path="/"><Index/></Route>
           <Route exact path="/dashboard"><Dashboard/></Route>
           <Route exact path="/articles"><Articles/></Route>
+          <Route path="/articles/:slug"><Article/></Route>
           <Route exact path="/dashboard"><Dashboard/></Route>
           <Route exact path="/editor"><Edit/></Route>
         </Switch>
